@@ -1,3 +1,8 @@
+:root {
+  --accent-clr: #f0db4f;
+  --text-clr: #323330;
+}
+
 *,
 *::after,
 *::before {
@@ -11,6 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #323330;
 }
 
 code {
@@ -18,6 +24,97 @@ code {
     monospace;
 }
 
+a {
+  color: var(--accent-clr);
+}
+
 .App {
   text-align: center;
+}
+header {
+  background-color: var(--text-clr);
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: white;
+  user-select: none;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  color: var(--accent-clr);
+}
+
+.logo-img {
+  height: 2rem;
+  width: auto;
+}
+
+.logo-text {
+  font-weight: 500;
+  line-height: 1;
+}
+
+nav {
+  position: relative;
+}
+
+nav span {
+  text-decoration: underline;
+  color: var(--accent-clr);
+  cursor: pointer;
+}
+
+nav .hiddenZone {
+  position: absolute;
+  width: 100%;
+  height: 1rem;
+}
+
+.dropMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background-color: var(--text-clr);
+  padding: 1rem;
+  width: max-content;
+  right: 0;
+  top: calc(100% + 0.8rem);
+  box-shadow: 0 0 0 3px var(--accent-clr);
+}
+
+.dropMenu::before {
+  position: absolute;
+  top: -1.4rem;
+  right: 0.5rem;
+  content: '';
+  height: 0;
+  width: 0;
+  border: 10px solid transparent;
+  border-bottom: 10px solid var(--accent-clr);
+}
+
+.dropMenu a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  text-decoration: none;
+}
+
+.dropMenu i {
+  font-size: 0.7rem;
+}
+
+.dropMenu a span {
+  text-decoration: underline;
+}
+
+.dropMenu a:hover span {
+  text-decoration: none;
 }
