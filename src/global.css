@@ -1,6 +1,7 @@
 :root {
-  --accent-clr: #f0db4f;
-  --text-clr: #323330;
+  --accent-clr: #ffcb05;
+  --mid-clr: #3d7dca;
+  --base-clr: #003a70;
 }
 
 *,
@@ -17,6 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #323330;
+  user-select: none;
 }
 
 code {
@@ -29,13 +31,18 @@ a {
 }
 
 .App {
-  text-align: center;
+  /* text-align: center; */
+  display: grid;
+  grid-template: auto auto 1fr / 1fr;
+  min-height: 100vh;
 }
+
 header {
-  background-color: var(--text-clr);
-  padding: 0.5rem 2rem;
+  background-color: var(--base-clr);
+  padding: 0.25rem 1rem;
   display: flex;
   align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   color: white;
   user-select: none;
@@ -43,19 +50,18 @@ header {
 
 .logo-wrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 0.5rem;
   color: var(--accent-clr);
 }
 
 .logo-img {
-  height: 2rem;
+  height: 3rem;
   width: auto;
 }
 
 .logo-text {
   font-weight: 500;
-  line-height: 1;
 }
 
 nav {
@@ -75,23 +81,35 @@ nav .hiddenZone {
 }
 
 .dropMenu {
+  z-index: 100;
   position: absolute;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: flex-start;
-  background-color: var(--text-clr);
+  background-color: var(--base-clr);
   padding: 1rem;
   width: max-content;
   right: 0;
   top: calc(100% + 0.8rem);
-  box-shadow: 0 0 0 3px var(--accent-clr);
+  box-shadow: 0 0 0 3px var(--mid-clr), 0 0 0 5px var(--accent-clr);
+  animation: appear 0.5s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .dropMenu::before {
   position: absolute;
-  top: -1.4rem;
-  right: 0.5rem;
+  top: -1.6rem;
+  right: -0.343rem;
   content: '';
   height: 0;
   width: 0;
@@ -117,4 +135,183 @@ nav .hiddenZone {
 
 .dropMenu a:hover span {
   text-decoration: none;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading img {
+  width: 100px;
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading h3 {
+  font-size: 2rem;
+  -webkit-text-stroke: 1px var(--mid-clr);
+  color: var(--accent-clr);
+  text-shadow: 3px 3px 0 var(--base-clr), -1px -1px 0 var(--base-clr),
+    1px -1px 0 var(--base-clr), -1px 1px 0 var(--base-clr),
+    1px 1px 0 var(--base-clr);
+}
+
+.board-wrapper {
+  position: sticky;
+  top: 0;
+  background-color: var(--mid-clr);
+  color: var(--accent-clr);
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.gameboard {
+  background: no-repeat fixed center url('./assets/bg.jpg');
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+}
+
+.card-wrapper {
+  padding: 1rem;
+  max-width: 188px;
+  /* margin: 0 0 1rem 0; */
+  background-color: var(--base-clr);
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr);
+  color: var(--accent-clr);
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s, box-shadow 0.05s, transform 0.05s;
+}
+
+.card-wrapper:hover {
+  background-color: var(--mid-clr);
+  transform: scale(1.01) translateY(-1%);
+  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
+    0 0 16px 4px #0004;
+}
+.card-wrapper:active {
+  transform: scale(0.99) translateY(1%);
+  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
+    0 0 8px 4px #0008;
+}
+
+.card-wrapper img {
+  display: block;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-wrapper * {
+  text-transform: capitalize;
+}
+
+.types {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.type {
+  font-size: 0.8rem;
+  border-radius: 4px;
+  line-height: 1.5;
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
+
+.type.normal {
+  background-color: #b7b7a9;
+  color: white;
+}
+.type.fire {
+  background-color: #ff6144;
+  color: white;
+}
+.type.water {
+  background-color: #52a9ff;
+  color: white;
+}
+.type.electric {
+  background-color: #ffd452;
+  color: white;
+}
+.type.grass {
+  background-color: #8cd46f;
+  color: white;
+}
+.type.ice {
+  background-color: #282a36;
+  color: white;
+}
+.type.fighting {
+  background-color: #c56f61;
+  color: white;
+}
+.type.poison {
+  background-color: #b76fa9;
+  color: white;
+}
+.type.ground {
+  background-color: #e2c56f;
+  color: white;
+}
+.type.flying {
+  background-color: #9aa9ff;
+  color: white;
+}
+.type.psychic {
+  background-color: #ff6fa9;
+  color: white;
+}
+.type.bug {
+  background-color: #b7c544;
+  color: white;
+}
+.type.rock {
+  background-color: #c5b77d;
+  color: white;
+}
+.type.ghost {
+  background-color: #7d7dc5;
+  color: white;
+}
+.type.dragon {
+  background-color: #8c7df1;
+  color: white;
+}
+.type.dark {
+  background-color: #8c6f61;
+  color: white;
+}
+.type.steel {
+  background-color: #b7b7c5;
+  color: white;
+}
+.type.fairy {
+  background-color: #f1a9f1;
+  color: white;
 }
