@@ -12,6 +12,10 @@ function Dropdown(props) {
         <i className='fas fa-external-link-alt'></i>
         <span>Project Source Code</span>
       </a>
+      <a target='_blank' rel='noreferrer' href='https://pokeapi.co/'>
+        <i className='fas fa-external-link-alt'></i>
+        <span>Powered by PokeAPI</span>
+      </a>
     </div>
   );
 }
