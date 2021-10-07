@@ -12,10 +12,10 @@ function Header() {
       <div className='logo-wrapper'>
         <img
           className='logo-img'
-          src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png'
+          src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/240px-Pok%C3%A9_Ball_icon.svg.png'
           alt=''
         />
-        <h2 className='logo-text'>JS Frameworks Memory Game</h2>
+        <h2 className='logo-text'>Pokémon Memory Game</h2>
       </div>
       <nav className='nav' onMouseLeave={disableHover}>
         made by{' '}
