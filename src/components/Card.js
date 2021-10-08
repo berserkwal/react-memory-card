@@ -1,6 +1,6 @@
 function Card(props) {
   return (
-    <div className='card-wrapper'>
+    <div className='card-wrapper' onClick={() => props.selectCard(props.name)}>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.id}.png`}
         alt={props.name}
