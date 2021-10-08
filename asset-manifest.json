@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-memory-card/static/css/main.1a75dd23.chunk.css",
+    "main.css": "/react-memory-card/static/css/main.72ade50c.chunk.css",
     "main.js": "/react-memory-card/static/js/main.284a60eb.chunk.js",
     "main.js.map": "/react-memory-card/static/js/main.284a60eb.chunk.js.map",
     "runtime-main.js": "/react-memory-card/static/js/runtime-main.443899c9.js",
@@ -8,14 +8,14 @@
     "static/js/2.836fa3e2.chunk.js": "/react-memory-card/static/js/2.836fa3e2.chunk.js",
     "static/js/2.836fa3e2.chunk.js.map": "/react-memory-card/static/js/2.836fa3e2.chunk.js.map",
     "index.html": "/react-memory-card/index.html",
-    "static/css/main.1a75dd23.chunk.css.map": "/react-memory-card/static/css/main.1a75dd23.chunk.css.map",
+    "static/css/main.72ade50c.chunk.css.map": "/react-memory-card/static/css/main.72ade50c.chunk.css.map",
     "static/js/2.836fa3e2.chunk.js.LICENSE.txt": "/react-memory-card/static/js/2.836fa3e2.chunk.js.LICENSE.txt",
     "static/media/global.css": "/react-memory-card/static/media/bg.1f160fec.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.443899c9.js",
     "static/js/2.836fa3e2.chunk.js",
-    "static/css/main.1a75dd23.chunk.css",
+    "static/css/main.72ade50c.chunk.css",
     "static/js/main.284a60eb.chunk.js"
   ]
 }
