@@ -200,7 +200,8 @@ nav .hiddenZone {
   width: 188px;
   background-color: var(--base-clr);
   border-radius: 8px;
-  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr);
+  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
+    0 0 16px 6px #0004;
   color: var(--accent-clr);
   display: flex;
   flex-direction: column;
@@ -209,16 +210,19 @@ nav .hiddenZone {
   transition: all 0.25s, box-shadow 0.05s, transform 0.05s;
 }
 
-.card-wrapper:hover {
-  background-color: var(--mid-clr);
-  transform: scale(1.01) translateY(-1%);
-  box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
-    0 0 16px 4px #0004;
+@media (hover: hover) {
+  .card-wrapper:hover {
+    background-color: var(--mid-clr);
+    transform: scale(1.01) translateY(-1%);
+    box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
+      0 0 16px 4px #0004;
+  }
 }
+
 .card-wrapper:active {
-  transform: scale(0.99) translateY(1%);
   box-shadow: 0 0 0 2px var(--accent-clr), 0 0 0 5px var(--base-clr),
     0 0 8px 4px #0008;
+  transform: scale(0.99) translateY(1%);
 }
 
 .card-wrapper img {
