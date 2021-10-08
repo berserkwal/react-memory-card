@@ -28,6 +28,7 @@ export const useGameState = () => {
       setIsLoadingNextLevel(true);
       setCurrentLevel((prevState) => prevState + 1);
     }
+    // eslint-disable-next-line
   }, [selectedCards]);
 
   const getRandom = () => {
@@ -60,6 +61,7 @@ export const useGameState = () => {
           });
       }
     }
+    // eslint-disable-next-line
   }, [currentLevel, currentScore]);
 
   useEffect(() => {
@@ -69,6 +71,7 @@ export const useGameState = () => {
       setIsLoadingNextLevel(false);
       setUsedID([]);
     }
+    // eslint-disable-next-line
   }, [pokeData]);
 
   useEffect(() => {
