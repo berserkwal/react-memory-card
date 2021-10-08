@@ -1,83 +1,78 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Gameboard from './components/Gameboard';
 import Header from './components/Header';
 // import IncClrTest from './components/IncClrTest';
 import Scoreboard from './components/Scoreboard';
+import { useGameState } from './hooks/useGameState';
 
 function App() {
-  const [levels] = useState([
-    { lev: 1, count: 4 },
-    { lev: 2, count: 6 },
-    { lev: 3, count: 8 },
-    { lev: 4, count: 10 },
-    { lev: 5, count: 12 },
-  ]);
+  const [
+    currentScore,
+    bestScore,
+    currentLevel,
+    cpData,
+    isLoading,
+    selectedCards,
+    setCurrentLevel,
+    setBestScore,
+    setCurrentScore,
+    setIsLoadingNextLevel,
+    setSelectedCards,
+    setCpData,
+  ] = useGameState();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const shuffleCards = (array) => {
+    let currentIndex = array.length;
+    let randomIndex;
 
-  const [pokeData, setPokeData] = useState([]);
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-  const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore, setBestScore] = useState(
-    () => localStorage.getItem('bestScore') || 0
-  );
-  const [currentLevel, setCurrentLevel] = useState(1);
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
 
-  const increment = () => {
-    setCurrentScore((prevScore) => prevScore + 1);
+    return array;
+  };
+
+  const increment = (name) => {
+    setCurrentScore((prevState) => prevState + 1);
+    setSelectedCards((prevState) => [...prevState, name]);
+    setCpData((prevState) => shuffleCards([...prevState]));
   };
 
   const clear = () => {
-    setCurrentScore(0);
     if (currentScore > bestScore) {
       setBestScore(currentScore);
     }
+    setCurrentLevel(1);
+    setIsLoadingNextLevel(true);
+    setCurrentScore(0);
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    setIsLoading(true);
-    for (let i = 0; i < levels[currentLevel - 1].count; i++) {
-      fetch(
-        `https://pokeapi.co/api/v2/pokemon/${
-          Math.floor(Math.random() * 898) + 1
-        }`
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setPokeData((prevData) => [
-            ...prevData,
-            {
-              id: data.id,
-              name: data.name,
-              types: data.types,
-            },
-          ]);
-        });
+  const selectCard = (name) => {
+    if (selectedCards.includes(name)) {
+      clear();
+    } else {
+      increment(name);
     }
-  }, [currentLevel, levels]);
-
-  useEffect(() => {
-    if (pokeData.length === levels[currentLevel - 1].count) {
-      setIsLoading(false);
-    }
-  }, [pokeData, levels, currentLevel]);
-
-  useEffect(() => {
-    if (currentScore > bestScore) {
-      localStorage.setItem('bestScore', currentScore);
-    }
-  }, [currentScore, bestScore]);
+  };
 
   return (
     <div className='App'>
       <Header />
-      <Scoreboard currentScore={currentScore} bestScore={bestScore} />
+      <Scoreboard
+        currentScore={currentScore}
+        bestScore={bestScore}
+        currentLevel={currentLevel}
+      />
       {/* <IncClrTest increment={increment} clear={clear} /> */}
       <Gameboard
-        pokeData={pokeData}
+        selectCard={selectCard}
+        pokeData={cpData}
         isLoading={isLoading}
         currentLevel={currentLevel}
       />
